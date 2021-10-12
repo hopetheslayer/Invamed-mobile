@@ -1,12 +1,21 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React from 'react'
+import { StatusBar, Text, View } from 'react-native'
+import Box from '../components/box'
+import SafeAreaView from 'react-native-safe-area-view'
+import { useFocusEffect } from '@react-navigation/native'
 
 function FavoriteScreen() {
+  useFocusEffect(
+    React.useCallback(() => {
+      StatusBar.setBarStyle('light-content')
+    }, [])
+  )
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <Box as={SafeAreaView} flex={1}>
       <Text>Favorite Screen!</Text>
-    </View>
-  );
+    </Box>
+  )
 }
 
-export default FavoriteScreen;
+export default FavoriteScreen

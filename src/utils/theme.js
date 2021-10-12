@@ -1,7 +1,7 @@
 const space = [];
 
 const radii = {
-  normal: 6,
+  normal: 8,
   full: 9999,
 };
 
@@ -9,7 +9,8 @@ const colors = {
   blue: '#007cbd',
   softblue: '#758291',
   white: '#E8EAED',
-  gray: '#758291',
+  whitex: '#ffffff',
+  light: '#758291',
   currentColor: '#007cbd',
   //
   birlesikkelimeDark: '#2E494C',

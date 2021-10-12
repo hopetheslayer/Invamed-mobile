@@ -1,5 +1,6 @@
 export { default as Activity } from './Activity'
 export { default as Bookmark } from './Bookmark'
+export { default as Close } from './Close'
 export { default as Invlogo } from './Invlogo'
 export { default as Logo } from './Logo'
 export { default as Logo1 } from './Logo1'
