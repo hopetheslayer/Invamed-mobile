@@ -20,54 +20,74 @@ import SafeAreaView from 'react-native-safe-area-view'
 import { useFocusEffect } from '@react-navigation/native'
 
 function SearchScreen({ navigation }) {
-  const [heroHeight] = React.useState(new Animated.Value(200))
+  const [heroHeight] = React.useState(new Animated.Value(225))
   const [isSearchFocus, setSearchFocus] = React.useState(false)
 
   React.useEffect(() => {
     if (isSearchFocus) {
       Animated.timing(heroHeight, {
-        toValue: 155,
-        duration: 500
+        toValue: 52 + 32,
+        duration: 320
       }).start()
     } else {
       Animated.timing(heroHeight, {
-        toValue: 285,
-        duration: 500
+        toValue: 200,
+        duration: 320
       }).start()
     }
   }, [heroHeight, isSearchFocus])
 
   useFocusEffect(
     React.useCallback(() => {
-      StatusBar.setBarStyle('light-content')
-    }, [])
+      StatusBar.setBarStyle(isSearchFocus ? 'dark-content' : 'light-content')
+    }, [isSearchFocus])
   )
 
   return (
-    <Box as={SafeAreaView} bg="blue">
-      <StatusBar barStyle="light-content" />
+    <Box as={SafeAreaView} bg={isSearchFocus ? 'white' : 'blue'} flex={1}>
       {/*Header*/}
-      <Box as={Animated.View} position="relative" height={heroHeight}>
+      <Box
+        as={Animated.View}
+        position="relative"
+        zIndex={1}
+        height={heroHeight}
+      >
+        {!isSearchFocus && (
+          <Box
+            as={ImageBackground}
+            source={bg}
+            style={{ width: '100%', height: '100%' }}
+          >
+            {/*logo*/}
+            <Box flex={1} alignItems="center" justifyContent="center">
+              <Logo1 color="white" />
+            </Box>
+          </Box>
+        )}
+
+        {/*İnput*/}
         <Box
-          as={ImageBackground}
-          source={bg}
-          style={{ width: '100%', height: '100%' }}
+          position="absolute"
+          zIndex={1}
+          left={0}
+          bottom={isSearchFocus ? -0 : -42}
+          width="100%"
+          p={16}
         >
-          {/*logo*/}
-          <Box flex={1} alignItems="center" justifyContent="center">
-            <Logo1 color="white" />
-          </Box>
-          {/*İnput*/}
-          <Box p={16} width="100%">
-            <Searchbar onChangeFocus={(status) => setSearchFocus(status)} />
-          </Box>
+          <Searchbar onChangeFocus={(status) => setSearchFocus(status)} />
         </Box>
-        {/*Content*/}
-        <Box>
-          <Box p={15}>
-            <Text>Deneme</Text>
+      </Box>
+      {/*Content*/}
+      <Box flex={1} bg="searchwhite" pt={isSearchFocus ? 0 : 26}>
+        {isSearchFocus ? (
+          <Box p={30} flex={1}>
+            <Text>History</Text>
           </Box>
-        </Box>
+        ) : (
+          <Box p={30} flex={1}>
+            <Text>Categories</Text>
+          </Box>
+        )}
       </Box>
 
       {/*Content*/}

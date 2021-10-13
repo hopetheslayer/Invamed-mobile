@@ -1,16 +1,17 @@
-const space = [];
+const space = []
 
 const radii = {
   normal: 8,
-  full: 9999,
-};
+  full: 9999
+}
 
 const colors = {
   blue: '#007cbd',
-  softblue: '#758291',
-  white: '#E8EAED',
+  softblue: '#E8EAED',
+  white: '#e2e4e8',
   whitex: '#ffffff',
   light: '#758291',
+  searchwhite: '#eaeef6',
   currentColor: '#007cbd',
   //
   birlesikkelimeDark: '#2E494C',
@@ -20,11 +21,11 @@ const colors = {
   atasozleriMedium: '#BB8E62',
   textDark: '#0A151F',
   textMedium: '#48515B',
-  textLight: '#758291',
-};
+  textLight: '#758291'
+}
 
 export default {
   space,
   radii,
-  colors,
-};
+  colors
+}

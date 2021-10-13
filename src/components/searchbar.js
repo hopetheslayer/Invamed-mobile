@@ -33,8 +33,9 @@ function Searchbar({ onChangeFocus }) {
           color="textDark"
           borderWidth={1}
           borderColor={isFocus ? '#D1D1D1' : 'transparent'}
-          placeholder="Türkçe Sözlük’te Ara"
+          placeholder="Search Invamed Products"
           placeholderTextColor="textMedium"
+          JustifyContent="center"
           pl={52}
           borderRadius="normal"
           value={value}
