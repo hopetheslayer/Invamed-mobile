@@ -7,12 +7,22 @@ import {
   borderRadius,
   alignContent,
   alignItems,
-  zIndex
+  zIndex,
+  border
 } from 'styled-system'
 import { View } from 'react-native'
 
 const Box = styled(View)(
-  compose(space, color, size, borderRadius, alignContent, alignItems, zIndex)
+  compose(
+    space,
+    color,
+    size,
+    borderRadius,
+    alignContent,
+    alignItems,
+    zIndex,
+    border
+  )
 )
 
 export default Box

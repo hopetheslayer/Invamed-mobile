@@ -1,47 +1,84 @@
 import React from 'react'
-import {
-  Button,
-  View,
-  StyleSheet,
-  ImageBackground,
-  StatusBar,
-  Text,
-  Animated
-} from 'react-native'
+import { StatusBar, Text, Animated, FlatList } from 'react-native'
 
-import { Invlogo, Logo, Logo1 } from '../components/icons'
+import { Logo1 } from '../components/icons'
 import Searchbar from '../components/searchbar'
 
 import Box from '../components/box'
-import bg from '../assets/bg2.jpg'
 
 import SafeAreaView from 'react-native-safe-area-view'
 
 import { useFocusEffect } from '@react-navigation/native'
+import Bg from '../components/bg'
+import { CardContainer, CardSummary, CardTitle } from '../components/card'
 
 function SearchScreen({ navigation }) {
+  const [bgOpacity] = React.useState(new Animated.Value(1))
   const [heroHeight] = React.useState(new Animated.Value(225))
   const [isSearchFocus, setSearchFocus] = React.useState(false)
 
   React.useEffect(() => {
     if (isSearchFocus) {
+      //bg Opacity
+      Animated.timing(bgOpacity, {
+        toValue: 0,
+        duration: 320,
+        useNativeDriver: false
+      }).start()
+      //hero yükseklik
       Animated.timing(heroHeight, {
         toValue: 52 + 32,
-        duration: 320
+        duration: 320,
+        useNativeDriver: false
       }).start()
     } else {
+      Animated.timing(bgOpacity, {
+        toValue: 1,
+        duration: 320,
+        useNativeDriver: false
+      }).start()
+      //hero yükseklik
       Animated.timing(heroHeight, {
         toValue: 200,
-        duration: 320
+        duration: 320,
+        useNativeDriver: false
       }).start()
     }
-  }, [heroHeight, isSearchFocus])
+  }, [bgOpacity, heroHeight, isSearchFocus])
 
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle(isSearchFocus ? 'dark-content' : 'light-content')
     }, [isSearchFocus])
   )
+
+  const DATA = [
+    {
+      id: '1',
+      title: 'First Item 1',
+      summary: 'First Item 1'
+    },
+    {
+      id: '2',
+      title: 'Second Item 2',
+      summary: 'Second Item 2'
+    },
+    {
+      id: '3',
+      title: 'Third Item 3',
+      summary: 'Third Item 3'
+    },
+    {
+      id: '4',
+      title: 'Fourth Item 4',
+      summary: 'Fourth Item 4'
+    },
+    {
+      id: '5',
+      title: 'Fived Item 5',
+      summary: 'Fived Item 5'
+    }
+  ]
 
   return (
     <Box as={SafeAreaView} bg={isSearchFocus ? 'white' : 'blue'} flex={1}>
@@ -53,15 +90,13 @@ function SearchScreen({ navigation }) {
         height={heroHeight}
       >
         {!isSearchFocus && (
-          <Box
-            as={ImageBackground}
-            source={bg}
-            style={{ width: '100%', height: '100%' }}
-          >
-            {/*logo*/}
-            <Box flex={1} alignItems="center" justifyContent="center">
-              <Logo1 color="white" />
-            </Box>
+          <Box mt={-120} as={Animated.View} opacity={bgOpacity}>
+            <Bg pt={120} pb={26}>
+              {/*logo*/}
+              <Box flex={1} alignItems="center" justifyContent="center">
+                <Logo1 color="white" />
+              </Box>
+            </Bg>
           </Box>
         )}
 
@@ -84,9 +119,28 @@ function SearchScreen({ navigation }) {
             <Text>History</Text>
           </Box>
         ) : (
-          <Box p={30} flex={1}>
-            <Text>Categories</Text>
+          <Box px={16} py={40} flex={1}>
+            <Box py={5}>
+              <CardContainer onPress={() => navigation.navigate('Detail')}>
+                <CardTitle>xd </CardTitle>
+                <CardSummary>dsa </CardSummary>
+              </CardContainer>
+            </Box>
           </Box>
+
+          // <Box px={16} py={40} flex={1}>
+          // <FlatList
+          //   data={DATA}
+          //  renderItem={({ item }) => (
+          //   <Box py={5}>
+          //     <CardContainer onPress={() => navigation.navigate('Detail')}>
+          //      <CardTitle>{item.title} </CardTitle>
+          //     <CardSummary>{item.summary} </CardSummary>
+          //  </CardContainer>
+          //</Box>
+          // )}
+          // keyExtractor={(item) => item.id}
+          //  />
         )}
       </Box>
 
