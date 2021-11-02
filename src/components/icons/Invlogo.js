@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Svg from 'react-native-svg';
+import * as React from 'react'
+import Svg from 'react-native-svg'
 
 function SvgInvlogo(props) {
   return (
@@ -11,7 +11,7 @@ function SvgInvlogo(props) {
       className=""
       {...props}
     />
-  );
+  )
 }
 
-export default SvgInvlogo;
+export default SvgInvlogo

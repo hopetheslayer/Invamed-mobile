@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Svg, {Path} from 'react-native-svg';
+import * as React from 'react'
+import Svg, { Path } from 'react-native-svg'
 
 function SvgActivity(props) {
   return (
@@ -14,10 +14,11 @@ function SvgActivity(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
       className=""
-      {...props}>
+      {...props}
+    >
       <Path d="M22 12h-4l-3 9L9 3l-3 9H2" />
     </Svg>
-  );
+  )
 }
 
-export default SvgActivity;
+export default SvgActivity

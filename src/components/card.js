@@ -5,7 +5,7 @@ import Button from './button';
 
 export function CardContainer({ children, ...props }) {
   return (
-    <Button bg="white" borderRadius="normal" px={12} p={16} {...props}>
+    <Button bg="whitex" borderRadius="normal" px={12} p={16} {...props}>
       <Box flex={1} borderLeftWidth={3} pl={12} borderLeftColor="light">
         {children}
       </Box>
